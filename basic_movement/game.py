@@ -16,10 +16,11 @@ class Game:
         self.display = pygame.Surface(self.display_size)
         self.clock = pygame.time.Clock()
 
+        player_size = 20
         self.player = Player(
-            self.display.get_width() // 2,
-            self.display.get_height() // 2,
-            20,
+            self.display.get_width() // 2 - player_size // 2,
+            self.display.get_height() // 2 - player_size // 2,
+            player_size,
             pygame.Color("blue"),
         )
         self.movement = pygame.Vector2()
