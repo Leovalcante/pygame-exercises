@@ -2,7 +2,7 @@ import sys
 
 import pygame.display
 
-from basic_movement.player import Player
+from player import Player
 
 
 class Game:
@@ -16,7 +16,12 @@ class Game:
         self.display = pygame.Surface(self.display_size)
         self.clock = pygame.time.Clock()
 
-        self.player = Player(self.display.get_width() // 2, self.display.get_height() // 2, 20, pygame.Color('blue'))
+        self.player = Player(
+            self.display.get_width() // 2,
+            self.display.get_height() // 2,
+            20,
+            pygame.Color("blue"),
+        )
         self.movement = pygame.Vector2()
 
     @staticmethod
@@ -59,7 +64,7 @@ class Game:
 
     def run(self):
         while True:
-            self.display.fill(pygame.Color('white'))
+            self.display.fill(pygame.Color("white"))
 
             self.handle_input()
 
