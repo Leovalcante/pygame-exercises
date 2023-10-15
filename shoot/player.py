@@ -36,10 +36,16 @@ class Player:
             if not alive:
                 self.shoots.remove(shoot)
 
-    def render(self, surf: pygame.Surface):
-        pygame.draw.rect(surf, self.color, self.get_rect())
+    def render(self, surf: pygame.Surface, offset=None):
+        if offset is None:
+            offset = pygame.Vector2()
+
+        player_rect = self.get_rect()
+        player_rect.x -= offset.x
+        player_rect.y -= offset.y
+        pygame.draw.rect(surf, self.color, player_rect)
         for shoot in self.shoots.copy():
-            shoot.render(surf)
+            shoot.render(surf, offset)
 
 
 class Shoot:
@@ -52,13 +58,15 @@ class Shoot:
     def update(self):
         self.pos += self.velocity * self.size
         self.time = max(self.time - 1, 0)
-        print(self.time)
         return self.time
 
-    def render(self, surf):
+    def render(self, surf, offset=None):
+        if offset is None:
+            offset = pygame.Vector2()
+
         pygame.draw.circle(
             surf,
             "red",
-            self.pos,
+            self.pos - offset,
             8,
         )

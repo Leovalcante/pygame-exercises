@@ -23,6 +23,8 @@ class Game:
         )
         self.movement = pygame.Vector2()
 
+        self.render_scroll = pygame.Vector2()
+
     @staticmethod
     def __quit():
         pygame.quit()
@@ -77,7 +79,13 @@ class Game:
         self.player.update(self.movement)
 
     def handle_render(self, surf):
-        self.player.render(surf)
+        self.render_scroll += (
+            self.player.get_rect().center
+            - pygame.Vector2(self.display.get_size()) / 2
+            - self.render_scroll
+        ) / 30
+
+        self.player.render(surf, self.render_scroll)
 
     def run(self):
         while True:
