@@ -33,5 +33,14 @@ while True:
 
         screen.blit(arrow, (50 + i * 250, 200))
 
+    arrow = arrow_img.copy()
+
+    mx, my = pygame.mouse.get_pos()
+    arr = pygame.transform.rotate(arrow, arrow_spin)
+    screen.blit(
+        arr,
+        (mx - arr.get_width() // 2, my - arr.get_height() // 2),
+    )
+
     pygame.display.update()
     clock.tick(60)
