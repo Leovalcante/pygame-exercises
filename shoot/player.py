@@ -9,6 +9,7 @@ class Player:
         self.y = y
         self.size = size
         self.color = color
+        self.speed = 4
 
         self.pos = pygame.Vector2(self.x, self.y)
 
@@ -19,14 +20,14 @@ class Player:
         return pygame.Rect(self.pos, [self.size] * 2)
 
     def update(self, movement: pygame.Vector2):
-        self.pos += movement
+        self.pos += movement * self.speed
         if self.shoot_direction != pygame.Vector2():
             self.shoots.append(
                 Shoot(
                     self.get_rect().center + self.shoot_direction * self.size,
                     self.shoot_direction.copy(),
                     self.size,
-                    10,
+                    30,
                 )
             )
 
@@ -50,7 +51,8 @@ class Shoot:
 
     def update(self):
         self.pos += self.velocity * self.size
-        self.time = max(self.time - 0.1, 0)
+        self.time = max(self.time - 1, 0)
+        print(self.time)
         return self.time
 
     def render(self, surf):

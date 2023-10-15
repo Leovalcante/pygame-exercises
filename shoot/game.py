@@ -6,7 +6,7 @@ from player import Player
 
 
 class Game:
-    def __init__(self, width=600, height=450, display_caption="game"):
+    def __init__(self, width=1000, height=800, display_caption="game"):
         pygame.init()
         display_size = (width, height)
         pygame.display.set_caption(display_caption)
