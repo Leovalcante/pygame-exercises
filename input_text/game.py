@@ -121,7 +121,7 @@ class Game:
         text_surf = self.font.render(
             self.user_input, antialias=True, color=pygame.Color("black")
         )
-        self.input.size[0] = max(self.input.size[0], text_surf.get_width() + 10)
+        self.input.size[0] = max(200, text_surf.get_width() + 10)
         input_rect = self.input.get_rect()
         surf.blit(
             text_surf,
